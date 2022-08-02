@@ -1,0 +1,13 @@
+use Employeedb
+
+select *from official_details
+
+select * from salary_details where salary<20000 
+select avg(salary) from salary_details 
+select * from salary_details where salary between 15000 and 30000
+
+update official_details set name='Uma',email='uma@bhavna.com',password='uma'
+
+update official_details set name='raju' ,email='raju@bhavna.com', password='raju' where id=102
+
+select  o.*,s.salary from salary_details s inner join official_details o on  o.name=s.name	
