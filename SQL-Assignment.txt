@@ -11,3 +11,73 @@ update official_details set name='Uma',email='uma@bhavna.com',password='uma'
 update official_details set name='raju' ,email='raju@bhavna.com', password='raju' where id=102
 
 select  o.*,s.salary from salary_details s inner join official_details o on  o.name=s.name	
+
+---* ASSIGNEMENT-2 *---
+
+--ecommerce--
+select * from customer
+insert into customer values('dhanu','dhanu@gmail.com','hyd');
+insert into customer values('rakesh','raki@gmail.com','wgl');
+insert into customer values('sony','sony@gmail.com','vizag');
+insert into customer values('mani','mani@gmail.com','kerala');
+
+select * from product
+
+insert into product values('dhanu@gmail.com','shirt',599);
+insert into product values('raki@gmail.com','pant',699);
+insert into product values('sony@gmail.com','furniture',1299);
+insert into product values('mani@gmail.com','bag',999);
+
+
+
+select product.*,customer.name from product 
+inner join customer on customer.email=product.email
+
+
+select * from product
+select * from order_tb
+select * from customer
+
+insert into order_tb values(104,1,999);
+insert into order_tb values(101,2,998);
+insert into order_tb values(102,2,1398);
+insert into order_tb values(103,1,1299);
+
+
+create view Ecommerce_View
+as
+
+select customer.name,product.pname,product.price,customer.address from customer 
+inner join product on product.email=customer.email
+
+select *from customer_View
+
+
+create view orderlist_View
+as 
+select product.pname,product.price,order_tb.quantity,order_tb.total
+from product
+inner join order_tb on product.pid=order_tb.pid
+
+
+select * from customer
+select * from product
+select * from order_tb
+select * from account
+select * from AccountDetails_View
+select * from orderlist_View
+
+create view AccountDetails_View
+as
+select customer.name, product.pname,product.price,order_tb.quantity,account.date,account.total,customer.address
+from product
+
+inner join customer on customer.email=product.email
+inner join order_tb on product.pid=order_tb.pid
+inner join account on order_tb.order_id=account.orderID
+
+select * from AccountDetails_View
+
+create view Num_Orders_View
+ as
+select sum(order_id) from order_tb 
